@@ -1,0 +1,25 @@
+version: '3'
+volumes:
+  postgres_data: {}
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/development/Dockerfile
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db/pin-backend?pool=5
+    volumes:
+      - .:/app
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password

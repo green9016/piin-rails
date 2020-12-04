@@ -1,0 +1,64 @@
+image: ruby:2.5.3
+
+pipelines:
+  default:
+    - step:
+       name: Rubocop
+       caches:
+         - bundler
+       script:
+         - gem install bundler -v '2.0.1'
+         - bundle install --path vendor/bundle
+         - bundle exec rubocop
+    - step:
+       name: RSpec
+       script:
+         - gem install bundler -v '2.0.1'
+         - bundle install --path vendor/bundle
+         - bundle exec rails db:migrate RAILS_ENV=test
+         - CODACY_PROJECT_TOKEN=36e5a850682341ddbf1aa4c5972552be bundle exec rspec ./spec/models
+       services:
+         - postgres
+  branches:
+    master:
+     - step:
+        name: Deploy
+        deployment: production
+        script:
+          - bash scripts/setup_pipeline.sh
+          - docker build -t gcr.io/pinapp-222219/pin-backend-production -f docker/production/Dockerfile .
+          - docker push gcr.io/pinapp-222219/pin-backend-production
+          - gcloud container clusters get-credentials pin-backend-production --zone=us-east1-b
+          - IMAGE_HASH=$(docker inspect --format "{{.RepoDigests}}" gcr.io/pinapp-222219/pin-backend-production)
+          - kubectl set image deployments/pin-backend pin-backend=`echo $IMAGE_HASH | cut -d "[" -f2 | cut -d "]" -f1`
+        services:
+          - docker
+        caches:
+          - docker
+    staging:
+     - step:
+        name: Deploy
+        deployment: staging
+        script:
+          - bash scripts/setup_pipeline.sh
+          - docker build -t gcr.io/pinapp-222219/pin-backend-production -f docker/production/Dockerfile .
+          - docker push gcr.io/pinapp-222219/pin-backend-production
+          - docker build -t gcr.io/pinapp-222219/pin-backend-staging -f docker/staging/Dockerfile .
+          - docker push gcr.io/pinapp-222219/pin-backend-staging
+          - gcloud container clusters get-credentials pin-backend-staging --zone=us-east1-b
+          - IMAGE_HASH=$(docker inspect --format "{{.RepoDigests}}" gcr.io/pinapp-222219/pin-backend-staging)
+          - kubectl set image deployments/pin-backend-staging pin-backend=`echo $IMAGE_HASH | cut -d "[" -f2 | cut -d "]" -f1`
+        services:
+          - docker
+        caches:
+          - docker
+definitions:
+  services:
+    postgres:
+      image: postgres
+      variables:
+        POSTGRES_DB: 'pin_test'
+        POSTGRES_USER: 'postgres'
+        POSTGRES_PASSWORD: 'password'
+  caches:
+    bundler: vendor/bundle

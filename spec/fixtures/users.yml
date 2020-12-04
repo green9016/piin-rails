@@ -1,0 +1,12 @@
+first_user:
+  email: 'admin@email.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456789') %>
+  sign_in_count: 0
+  username: 'admin'
+  first_name: 'Barry'
+  last_name: 'Allen'
+  birthday: <%= Time.current - 18.years %>
+  photo: ''
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+  role_id: 1

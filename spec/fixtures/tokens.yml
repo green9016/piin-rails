@@ -1,0 +1,5 @@
+first_token:
+  user: first_user
+  key: 'r2x4d1nRmUV-NgWLkbwaoJwKihhP'
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

@@ -1,0 +1,15 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'spec/**/*'
+    - 'vendor/bundle/**/*/'
+    - 'app/controllers/v1/admin/mock_controller.rb'
+Documentation:
+  Enabled: false

@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pin-backend
+  labels:
+    app: pin-backend
+    tier: backend
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: pin-backend
+        tier: backend
+    spec:
+      containers:
+      - name: pin-backend
+        image: gcr.io/pinapp-222219/pin-backend-production:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: rails
+          containerPort: 3000
+        env:
+          - name: SECRET_KEY_BASE
+            valueFrom:
+              secretKeyRef:
+                name: pin-backend-secrets
+                key: secret-key-base
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: pin-backend-secrets
+                key: database-url
+          - name: GOOGLE_PROJECT
+            valueFrom:
+              secretKeyRef:
+                name: pin-backend-secrets
+                key: google-project
+          - name: GOOGLE_JSON_KEY_STRING
+            valueFrom:
+              secretKeyRef:
+                name: pin-backend-secrets
+                key: google-json-key-string
+

@@ -1,0 +1,25 @@
+# pack-refs with: peeled fully-peeled sorted 
+747817fae118506d43ed0ddf7beb1cff8c59bdcf refs/remotes/origin/PIN-113
+2dfb0e2981e833f0ccc2902756706697ce2be7aa refs/remotes/origin/PIN-153-tests-for-registrations
+21b240dd9db98ef6c2326fb123f2732436a79cce refs/remotes/origin/PIN-154-session-test
+2103aa6178bb2182be25802d39c67f0864842758 refs/remotes/origin/PIN-171-delete-accoun-refund
+ea37b09b2add6695861bbc21e133158a6f09354c refs/remotes/origin/PIN-23-facebook
+41fd5f9910543adc673398fb4ff5731b6dca3a5e refs/remotes/origin/PIN-341-new
+9fa19f540293dd6bcfe3d85f3fcd687274e6230b refs/remotes/origin/PIN-343
+8d72773163b9d37d2f62817a53017f5abb138ee4 refs/remotes/origin/PIN-345
+c4f398bf9c7ccc7486f6b3ada40e4534543a72bd refs/remotes/origin/PIN-345-new
+2414731a8c82a9ff45c020f67cbb2099f799fbe8 refs/remotes/origin/PIN-346
+59b02121057b29f48bdeebf66c78366d3dba435f refs/remotes/origin/PIN-348
+d28e0d43c73c9428eec1ff7ab0a27659f51ad85f refs/remotes/origin/PIN-351
+3c400cdfb082bcabbac81e1423fa2bf591fd36a8 refs/remotes/origin/PIN-351-new
+3afa4862032a2836bb610db19912160b1ca2653f refs/remotes/origin/PIN-494
+ddf26601fbcca75f35f0c5a2e6d8f0049b5d49ea refs/remotes/origin/PIN-498
+db9e817116430dfe83423d54a59d11d557330536 refs/remotes/origin/PIN-506
+c3a8f1618fb43f9433934a12b9217d9e34eba119 refs/remotes/origin/PIN-506-new
+a32d7f3330f011255e12d6fcd5dd00e07d34a1de refs/remotes/origin/PIN-613
+4b8868843a742c9c51c2286a4a1028e78c84fb0d refs/remotes/origin/development
+eb48521bf2de520f738e847a439700014565b494 refs/remotes/origin/hotfix-syntax-error
+3652ab0e40d09390ea6e6b3a97a3952602f3b84b refs/remotes/origin/master
+33ba54e5d5cc9b40ceba007eb7c808a1a46aded2 refs/remotes/origin/pin-351
+21bab6233ddada112b7b1a9f5478cc28abcc2d4c refs/remotes/origin/pin-625
+ee941c4ee37741f8ee742aef1283edc08cb434f2 refs/remotes/origin/staging
